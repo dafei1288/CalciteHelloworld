@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "defaultSchema": "bookshop",
+  "schemas": [
+    {
+      "type": "custom",
+      "name": "bookshop",
+      "factory": "com.dafei1288.calcite.InMemorySchemaFactory",
+      "tables": [
+        {
+          "name": "book",
+          "type": "custom",
+          "factory": "com.dafei1288.calcite.InMemoryTableFactory",
+          "columns": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "bookname"
+            },
+            {
+              "name": "authorid"
+            }
+          ]
+        },
+        {
+          "name": "author",
+          "type": "custom",
+          "factory": "com.dafei1288.calcite.InMemoryTableFactory",
+          "columns": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "authorname"
+            }
+          ]
+        }
+      ],
+      "operand": {
+        "p1": "hello",
+        "p2": "world"
+      }
+    }
+  ]
+}

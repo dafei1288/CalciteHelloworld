@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "defaultSchema": "bookshop",
+  "schemas": [
+    {
+      "type": "custom",
+      "name": "bookshop",
+      "factory": "com.dafei1288.calcite.InMemorySchemaFactory",
+      "operand": {
+        "p1": "hello",
+        "p2": "world"
+      }
+    }
+  ]
+}
