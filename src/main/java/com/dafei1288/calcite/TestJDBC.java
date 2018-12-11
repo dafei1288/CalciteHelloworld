@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.Properties;
 
 public class TestJDBC {
@@ -69,5 +70,7 @@ public class TestJDBC {
         }catch(Exception e){
             e.printStackTrace();
         }
+
+        System.out.println(new Date().getTime());
     }
 }
