@@ -71,6 +71,6 @@ public class TestJDBC {
             e.printStackTrace();
         }
 
-        System.out.println(new Date().getTime());
+//        System.out.println(new Date().getTime());
     }
 }
