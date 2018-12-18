@@ -105,6 +105,18 @@ public class TestJDBC {
             }
             result.close();
 
+            //CONCAT_FUNC
+            result = st.executeQuery("select SQUARE_FUNC(b.id),CONCAT_FUNC(TOSTRING_FUNC(b.id),b.name) from \"BOOK\" as b");
+            while(result.next()) {
+                System.out.println(result.getString(1) + "\t" +result.getString(2) + "\t" );
+            }
+            result.close();
+
+            result = st.executeQuery("select SQUARE_FUNC(b.id),CONCAT_FUNC(b.id,b.name) from \"BOOK\" as b");
+            while(result.next()) {
+                System.out.println(result.getString(1) + "\t" +result.getString(2) + "\t" );
+            }
+            result.close();
             connection.close();
 
         }catch(Exception e){
