@@ -1,5 +1,6 @@
 package com.dafei1288.calcite;
 
+import com.dafei1288.calcite.storage.DataTypeMapping;
 import com.dafei1288.calcite.storage.Storage;
 import org.apache.calcite.DataContext;
 import org.apache.calcite.linq4j.AbstractEnumerable;
@@ -35,10 +36,8 @@ public class InMemoryTable extends AbstractTable implements ScannableTable {
         if(dataType == null) {
             RelDataTypeFactory.FieldInfoBuilder fieldInfo = typeFactory.builder();
             for (Storage.DummyColumn column : this._table.getColumns()) {
-                RelDataType sqlType = typeFactory.createJavaType(
-                        String.class);
+                RelDataType sqlType = typeFactory.createJavaType(column.getJavaClass());
                 sqlType = SqlTypeUtil.addCharsetAndCollation(sqlType, typeFactory);
-//                System.out.println(column.getName()+" / "+sqlType);
                 fieldInfo.add(column.getName(), sqlType);
             }
             this.dataType = typeFactory.createStructType(fieldInfo);
