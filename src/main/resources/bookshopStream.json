@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "defaultSchema": "bookshopstream",
+  "schemas": [
+    {
+      "name": "bookshopstream",
+      "tables": [
+        {
+          "name": "BOOK",
+          "type": "custom",
+          "factory": "com.dafei1288.calcite.stream.InMemoryStreamTableFactory",
+          "stream": {
+            "stream": true
+          },
+          "operand": {
+            "p1": "hello",
+            "p2": "world"
+          }
+        }
+      ]
+    }
+  ]
+}
