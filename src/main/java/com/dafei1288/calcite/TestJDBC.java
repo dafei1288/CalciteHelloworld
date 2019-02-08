@@ -117,6 +117,16 @@ public class TestJDBC {
                 System.out.println(result.getString(1) + "\t" +result.getString(2) + "\t" );
             }
             result.close();
+
+            System.out.println(" ..............  ");
+            System.out.println("");
+            st = connection.createStatement();
+            result = st.executeQuery("select stream * from book as b ");
+            while(result.next()) {
+                System.out.println(result.getString(1) + "\t" + result.getString(2) + "\t" );
+            }
+            result.close();
+
             connection.close();
 
         }catch(Exception e){

@@ -6,7 +6,19 @@
       "name": "bookshopstream",
       "tables": [
         {
-          "name": "BOOK",
+          "name": "SALES",
+          "type": "custom",
+          "factory": "com.dafei1288.calcite.stream.InMemoryStreamTableFactory",
+          "stream": {
+            "stream": true
+          },
+          "operand": {
+            "timeformat": "HH:mm:ss",
+            "p2": "world"
+          }
+        },
+        {
+          "name": "PRODUCT",
           "type": "custom",
           "factory": "com.dafei1288.calcite.stream.InMemoryStreamTableFactory",
           "stream": {

@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "defaultSchema": "bookshopstream",
+  "schemas": [
+    {
+      "name": "bookshopstream",
+      "tables": [
+        {
+          "name": "KF",
+          "type": "custom",
+          "factory": "com.dafei1288.calcite.stream.kafka.KafkaStreamTableFactory",
+          "stream": {
+            "stream": true
+          },
+          "operand": {
+            "topic": "calcitekafka",
+            "bootstrap.servers": "localhost:9092",
+            "group.id": "test2",
+            "enable.auto.commit": "true",
+            "auto.commit.interval.ms": "1000",
+            "session.timeout.ms": "30000",
+            "auto.offset.reset":"earliest",
+            "key.deserializer": "org.apache.kafka.common.serialization.StringDeserializer",
+            "value.deserializer": "org.apache.kafka.common.serialization.StringDeserializer",
+            "max.poll.records": 20,
+            "colnames": "KK,VV",
+            "timeouts": "3000"
+          }
+        }
+      ]
+    }
+  ]
+}

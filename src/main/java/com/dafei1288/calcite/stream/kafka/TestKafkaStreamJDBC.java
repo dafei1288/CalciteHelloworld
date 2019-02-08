@@ -1,4 +1,4 @@
-package com.dafei1288.calcite.stream;
+package com.dafei1288.calcite.stream.kafka;
 
 import org.apache.calcite.jdbc.CalciteConnection;
 import org.apache.calcite.util.ConversionUtil;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class TestStreamJDBC {
+public class TestKafkaStreamJDBC {
     public static void main(String[] args) {
         try {
             Class.forName("org.apache.calcite.jdbc.Driver");
@@ -21,7 +21,7 @@ public class TestStreamJDBC {
         System.setProperty("saffron.default.collation.name",ConversionUtil.NATIVE_UTF16_CHARSET_NAME + "$en_US");
 
         Properties info = new Properties();
-        String jsonmodle = "E:\\working\\others\\写作\\calcitetutorial\\src\\main\\resources\\bookshopStream.json";
+        String jsonmodle = "E:\\working\\others\\写作\\calcitetutorial\\src\\main\\resources\\kafkaStream.json";
         try {
             Connection connection =
                     DriverManager.getConnection("jdbc:calcite:model=" + jsonmodle, info);
@@ -33,15 +33,11 @@ public class TestStreamJDBC {
 
             st = connection.createStatement();
             //where b.name = '数据山'
-            result = st.executeQuery("select stream * from SALES ");
-            while(result.next()) {
-                System.out.println(result.getString(1)+" \t "+result.getString(2)+" \t "+result.getString(3)+" \t "+result.getString(4));
-            }
-
-            result = st.executeQuery("select stream * from PRODUCT ");
+            result = st.executeQuery("select stream kf.kk,kf.vv from KF as kf ");
             while(result.next()) {
                 System.out.println(result.getString(1)+" \t "+result.getString(2));
             }
+
             result.close();
         }catch(Exception e){
             e.printStackTrace();

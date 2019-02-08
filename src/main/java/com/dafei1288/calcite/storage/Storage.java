@@ -14,7 +14,8 @@ public class Storage {
     public static final String SCHEMA_NAME = "bookshop";
     public static final String TABLE_AUTHOR = "AUTHOR";
     public static final String TABLE_BOOK = "BOOK";
-
+    public static final String TABLE_SALES = "SALES";
+    public static final String TABLE_PRODUCT = "PRODUCT";
 //    public static List<DummyTable> tables = new ArrayList<>();
     public static Hashtable<String,DummyTable> _bag = new Hashtable<>();
     static{
@@ -40,6 +41,32 @@ public class Storage {
         book.addRow(4,3,"ten","c#");
 //        tables.add(book);
         _bag.put(TABLE_BOOK,book);
+
+
+        DummyTable sales = new Storage.DummyTable(TABLE_SALES);
+        Storage.DummyColumn rowtime = new Storage.DummyColumn("rowtime","time");
+        Storage.DummyColumn productId = new Storage.DummyColumn("productId","integer");
+        Storage.DummyColumn orderId = new Storage.DummyColumn("orderId","integer");
+        Storage.DummyColumn units = new Storage.DummyColumn("units","integer");
+        sales.addColumn(rowtime).addColumn(productId).addColumn(orderId).addColumn(units);
+        sales.addRow("10:17:00" ,30 ,5 ,4);
+        sales.addRow("10:17:05",10,6,1);
+        sales.addRow("10:18:05",20,7,2);
+        sales.addRow("10:18:07",30,8,20);
+        sales.addRow("11:02:00",10,9,6);
+        sales.addRow("11:04:00",10,10,1);
+        sales.addRow("11:09:30",40,11,12);
+        sales.addRow("11:24:11",10,12,4);
+        _bag.put(TABLE_SALES,sales);
+
+        DummyTable prod = new Storage.DummyTable(TABLE_PRODUCT);
+        Storage.DummyColumn productName = new Storage.DummyColumn("name","varchar");
+        prod.addColumn(productId).addColumn(productName);
+        prod.addRow(10,"Beer");
+        prod.addRow(20,"Wine");
+        prod.addRow(30,"Cheese");
+        prod.addRow(40,"Bread");
+        _bag.put(TABLE_PRODUCT,prod);
     }
 
     public static Collection<DummyTable> getTables(){
@@ -51,7 +78,7 @@ public class Storage {
       private String name;
       private List<DummyColumn> columns;
       private List<List<Object>> datas = new ArrayList<>();
-      DummyTable(String name){
+      public DummyTable(String name){
           this.name = name;
       }
 
